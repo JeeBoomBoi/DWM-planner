@@ -22,7 +22,6 @@ public class ToDoItemController {
         logger.info("GET home page");
         ModelAndView modelAndView = new ModelAndView("index");
         modelAndView.addObject("toDoItems", toDoItemRepository.findAll());
-        System.err.println(modelAndView.getModelMap());
         return modelAndView;
     }
     
