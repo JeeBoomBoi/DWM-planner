@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css} " />
-    <title>Document</title>
+    <title>Home Page</title>
 </head>
 <body>
     
@@ -27,7 +27,7 @@
                 <tr th:each="item : ${toDoItems}">
                     <td>
                         <div class="btn btn-group-sm" role="group">
-                            <a class="btn btn-info" th:href="@{#}">Edit</a>
+                            <a class="btn btn-info" th:href="@{/edit/{id}(id=${item.id})}">Edit</a>
                             <a class="btn btn-danger" th:href="@{#}">Delete</a>
                         </div>
                     </td>
