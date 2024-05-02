@@ -1,7 +1,5 @@
 package com.jeeboomboi.springplannerapplication.controllers;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,8 +11,6 @@ import com.jeeboomboi.springplannerapplication.repositories.ToDoItemRepository;
 
 @Controller
 public class ToDoFormController {
-
-    private final Logger logger = LoggerFactory.getLogger(ToDoFormController.class);
 
     @Autowired
     private ToDoItemRepository toDoItemRepository;
@@ -30,4 +26,13 @@ public class ToDoFormController {
         return "update-todo-item";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteTodoItem(@PathVariable("id") long id, Model model) {
+        ToDoItem todoItem = toDoItemRepository
+        .findById(id)
+        .orElseThrow(() -> new IllegalArgumentException("TodoItem id: " + id + " not found"));
+    
+        toDoItemRepository.delete(todoItem);
+        return "redirect:/";
+    }
 }
