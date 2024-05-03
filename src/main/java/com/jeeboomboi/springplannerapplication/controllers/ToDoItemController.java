@@ -1,6 +1,6 @@
 package com.jeeboomboi.springplannerapplication.controllers;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,8 +42,8 @@ public class ToDoItemController {
             return "add-todo-item";
         }
 
-        toDoItem.setCreatedDate(Instant.now());
-        toDoItem.setModifiedDate(Instant.now());
+        toDoItem.setCreatedDate(LocalDateTime.now());
+        toDoItem.setModifiedDate(LocalDateTime.now());
         toDoItemRepository.save(toDoItem);
         return "redirect:/";
     }
@@ -56,7 +56,7 @@ public class ToDoItemController {
             return "update-todo-item";
         }
 
-        toDoItem.setModifiedDate(Instant.now());
+        toDoItem.setModifiedDate(LocalDateTime.now());
         toDoItemRepository.save(toDoItem);
         return "redirect:/";
     }
