@@ -20,6 +20,7 @@ import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
+
 @Controller
 public class ToDoItemController {
     private final Logger logger = LoggerFactory.getLogger(ToDoItemController.class);
@@ -34,6 +35,19 @@ public class ToDoItemController {
         modelAndView.addObject("toDoItems", toDoItemRepository.findAll());
         return modelAndView;
     }
+
+    @PostMapping("/add-todo")
+    public String addToDoItem(@Valid ToDoItem toDoItem, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "add-todo-item";
+        }
+
+        toDoItem.setCreatedDate(Instant.now());
+        toDoItem.setModifiedDate(Instant.now());
+        toDoItemRepository.save(toDoItem);
+        return "redirect:/";
+    }
+    
 
     @PostMapping("/todo/{id}")
     public String updateToDoItem(@PathVariable("id") long id, @Valid ToDoItem toDoItem, BindingResult result, Model model) {

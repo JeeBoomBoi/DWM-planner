@@ -24,7 +24,7 @@
                 </tr>
             </thead>
             <tbody>  
-                <tr th:each="item : ${toDoItems}">
+                <tr th:each="item : ${toDoItems}" th:class="${item.complete} ? table-success : table-warning">
                     <td>
                         <div class="btn btn-group-sm" role="group">
                             <a class="btn btn-info" th:href="@{/edit/{id}(id=${item.id})}">Edit</a>
@@ -39,6 +39,9 @@
                 </tr>
             </tbody>
         </table>
+        <div class="btn">
+            <a href="/add-todo" class="btn btn-success">Add a todo</a>
+        </div>
     </div>
     <script th:src="@{/webjars/jquery/3.7.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/5.3.3/js/bootstrap.min.js}"></script>

@@ -9,13 +9,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.jeeboomboi.springplannerapplication.models.ToDoItem;
 import com.jeeboomboi.springplannerapplication.repositories.ToDoItemRepository;
 
+
 @Controller
 public class ToDoFormController {
 
     @Autowired
     private ToDoItemRepository toDoItemRepository;
 
-    @GetMapping("edit/{id}")
+    @GetMapping("/add-todo")
+    public String showCreateForm(ToDoItem toDoItem) {
+        return "add-todo-item";
+    }
+    
+    @GetMapping("/edit/{id}")
     public String showUpdateForm(@PathVariable("id") long id, Model model) {
         // Model is always passed in Spring Boot
         ToDoItem toDoItem = toDoItemRepository
