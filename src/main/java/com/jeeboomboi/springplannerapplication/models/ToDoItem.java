@@ -1,40 +1,30 @@
 package com.jeeboomboi.springplannerapplication.models;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name="todo_item")
 public class ToDoItem {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Getter
-    @Setter
     private Long id;
 
-    @Getter
-    @Setter
     private String description;
 
-    @Getter
-    @Setter
     private boolean complete;
 
-    @Getter
-    @Setter
-    private Instant createdDate;
+    private LocalDateTime createdDate;
 
-    @Getter
-    @Setter
-    private Instant modifiedDate;
+    private LocalDateTime modifiedDate;
 
     public ToDoItem() {
 
@@ -43,8 +33,8 @@ public class ToDoItem {
     public ToDoItem(String description) {
         this.description = description;
         this.complete = false;
-        this.createdDate = Instant.now();
-        this.modifiedDate = Instant.now();
+        this.createdDate = LocalDateTime.now();
+        this.modifiedDate = LocalDateTime.now();
     }
 
     @Override
