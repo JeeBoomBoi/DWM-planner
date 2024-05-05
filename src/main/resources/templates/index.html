@@ -16,8 +16,9 @@
             <thead>
                 <tr>
                     <th>Action</th>
-                    <th>Id</th>
+                    <!-- <th>Id</th> -->
                     <th>Description</th>
+                    <th>Category</th>
                     <th>Complete</th>
                     <th>Created Date</th>
                     <th>Modified Date</th>
@@ -31,8 +32,9 @@
                             <a class="btn btn-danger" th:href="@{/delete/{id}(id=${item.id})}">Delete</a>
                         </div>
                     </td>
-                    <td th:text="${item.id}">item_id</td>
+                    <!-- <td th:text="${item.id}">item_id</td> -->
                     <td th:text="${item.description}">item_description</td>
+                    <td th:text="${item.category.title}">item_description</td>
                     <td th:text="${item.complete}">item_complete</td>
                     <td th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}">item_created_date</td>
                     <td th:text="${#temporals.format(item.modifiedDate, 'dd-MM-yyyy HH:mm')}">item_modified_date</td>

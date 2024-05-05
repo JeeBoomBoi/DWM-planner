@@ -12,7 +12,7 @@
         <div class="col-md-6">
             <form action="#" th:object="${todo}" th:action="@{/todo/{id}(id=${todo.id})}" method="post">
                 <div class="form-group">
-                    <label for="description">Description</label>
+                    <label for="description" class="mb-2">Description</label>
                     <!-- *{field} binds form field to model -->
                     <input type="text" class="form-control" th:field="*{description}" id="description" placeholder="Add a description">
                     <div class="checkbox">
@@ -21,7 +21,12 @@
                             Complete
                         </label>
                     </div>
-    
+                    <br>
+                    <label for="category_id" class="mb-2">Category</label>
+                    <select class="form-control" id="category_id" th:field="*{category.id}">
+                        <option th:each="category : ${categories}" th:value="${category.category_id}" th:utext="${category.title}"/>
+                    </select>
+                    <br>
                     <button class="btn btn-dark" type="submit">Update</button>
     
                     <input type="hidden" th:field="*{createdDate}" />
