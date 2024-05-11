@@ -19,8 +19,6 @@ import jakarta.validation.Valid;
 
 import org.springframework.web.bind.annotation.PostMapping;
 
-
-
 @Controller
 public class ToDoItemController {
     private final Logger logger = LoggerFactory.getLogger(ToDoItemController.class);
@@ -47,10 +45,10 @@ public class ToDoItemController {
         toDoItemRepository.save(toDoItem);
         return "redirect:/";
     }
-    
 
     @PostMapping("/todo/{id}")
-    public String updateToDoItem(@PathVariable("id") long id, @Valid ToDoItem toDoItem, BindingResult result, Model model) {
+    public String updateToDoItem(@PathVariable("id") long id, @Valid ToDoItem toDoItem, BindingResult result,
+            Model model) {
         if (result.hasErrors()) {
             toDoItem.setId(id);
             return "update-todo-item";
@@ -60,5 +58,4 @@ public class ToDoItemController {
         toDoItemRepository.save(toDoItem);
         return "redirect:/";
     }
-    
 }

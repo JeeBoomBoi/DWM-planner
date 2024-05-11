@@ -12,10 +12,15 @@
         <div class="col-md-6">
             <form action="#" th:action="@{/add-todo}" th:object="${toDoItem}" method="post">
                 <div class="form-group">
-                    <label for="description">Description</label>
+                    <label for="description" class="mb-2">Description</label>
                     <input type="text" class="form-control" th:field="*{description}" id="description" placeholder="Add a Todo description">
+                    <br>
+                    <label for="category_id" class="mb-2">Category</label>
+                    <select class="form-control" id="category_id" th:field="*{category.id}">
+                        <option th:each="category : ${categories}" th:value="${category.category_id}" th:utext="${category.title}"/>
+                    </select>
                     <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
-
+                    <br>
                     <button class="btn btn-dark" type="submit">Add Todo</button>
                 </div>
             </form>
