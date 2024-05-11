@@ -20,14 +20,17 @@
         </div>
         <div class="row">
             <div class="col-sm-6">
+                <div class="d-flex justify-content-center">
+                    <h3>Daily Tasks</h3>
+                </div>
                 <div th:each="category: ${categories}" th:object="${category}">
                     <div class="card shadow mb-3 bg-white rounded">
                         <div class="card-body">
                             <h5 class="card-title" th:text="${category.title}">card_title</h5>
                         </div>
-                        <div class="list-group list-group-flush d-flex justify-content-center">
-                            <div class="list-group-item" th:each="item : ${category.toDoList}">
-                                <div class="d-flex flex-row justify-content-between">
+                        <div class="list-group list-group-flush d-flex justify-content-center" th:each="item : ${category.toDoList}" th:switch="${item.toDoType}">
+                            <div class="list-group-item" th:case="Daily">
+                                <div class="d-flex flex-row justify-content-between" >
                                     <div>
                                         <div th:text="${item.description}"></div>
                                         <small th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}"></small>
@@ -44,9 +47,61 @@
                     </div>
                 </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
+                <div class="d-flex justify-content-center">
+                    <h3>Weekly Tasks</h3>
+                </div>
+                <div th:each="category: ${categories}" th:object="${category}">
+                    <div class="card shadow mb-3 bg-white rounded">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${category.title}">card_title</h5>
+                        </div>
+                        <div class="list-group list-group-flush d-flex justify-content-center" th:each="item : ${category.toDoList}" th:switch="${item.toDoType}">
+                            <div class="list-group-item" th:case="Weekly">
+                                <div class="d-flex flex-row justify-content-between" >
+                                    <div>
+                                        <div th:text="${item.description}"></div>
+                                        <small th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}"></small>
+                                    </div>
+                                    <div class="btn btn-group-sm" role="group">
+                                        <a th:href="@{/edit/{id}(id=${item.id})}"><i
+                                                class="fa-solid fa-pen-to-square fa-lg fa-fw"></i></a>
+                                        <a th:href="@{/delete/{id}(id=${item.id})}"><i
+                                                class="fa-solid fa-trash fa-lg fa-fw"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-sm-6">
+            <div class="col-sm-3">
+                <div class="d-flex justify-content-center">
+                    <h3>Monthly Tasks</h3>
+                </div>
+                <div th:each="category: ${categories}" th:object="${category}">
+                    <div class="card shadow mb-3 bg-white rounded">
+                        <div class="card-body">
+                            <h5 class="card-title" th:text="${category.title}">card_title</h5>
+                        </div>
+                        <div class="list-group list-group-flush d-flex justify-content-center" th:each="item : ${category.toDoList}" th:switch="${item.toDoType}">
+                            <div class="list-group-item" th:case="Monthly">
+                                <div class="d-flex flex-row justify-content-between" >
+                                    <div>
+                                        <div th:text="${item.description}"></div>
+                                        <small th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}"></small>
+                                    </div>
+                                    <div class="btn btn-group-sm" role="group">
+                                        <a th:href="@{/edit/{id}(id=${item.id})}"><i
+                                                class="fa-solid fa-pen-to-square fa-lg fa-fw"></i></a>
+                                        <a th:href="@{/delete/{id}(id=${item.id})}"><i
+                                                class="fa-solid fa-trash fa-lg fa-fw"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

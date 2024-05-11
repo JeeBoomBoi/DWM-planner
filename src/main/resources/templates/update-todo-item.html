@@ -27,6 +27,11 @@
                         <option th:each="category : ${categories}" th:value="${category.category_id}" th:utext="${category.title}"/>
                     </select>
                     <br>
+                    <label for="type" class="mb-2">Type of Todo</label>
+                    <select class="form-control" id="type" th:field="*{toDoType}">
+                        <option th:each="todoType : ${todo.list}" th:value="${todoType}" th:utext="${todoType}"/>
+                    </select>
+                    <br>
                     <button class="btn btn-dark" type="submit">Update</button>
     
                     <input type="hidden" th:field="*{createdDate}" />

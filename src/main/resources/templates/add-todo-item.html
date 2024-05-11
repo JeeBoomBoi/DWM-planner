@@ -19,6 +19,11 @@
                     <select class="form-control" id="category_id" th:field="*{category.id}">
                         <option th:each="category : ${categories}" th:value="${category.category_id}" th:utext="${category.title}"/>
                     </select>
+                    <br>
+                    <label for="type" class="mb-2">Type of Todo</label>
+                    <select class="form-control" id="type" th:field="*{toDoType}">
+                        <option th:each="todoType : ${toDoItem.list}" th:value="${todoType}" th:utext="${todoType}"/>
+                    </select>
                     <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></span>
                     <br>
                     <button class="btn btn-dark" type="submit">Add Todo</button>
