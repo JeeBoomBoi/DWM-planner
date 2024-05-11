@@ -10,9 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.servlet.ModelAndView;
+// import org.springframework.web.servlet.ModelAndView;
 
 import com.jeeboomboi.springplannerapplication.models.ToDoItem;
+import com.jeeboomboi.springplannerapplication.repositories.CategoryRepository;
 import com.jeeboomboi.springplannerapplication.repositories.ToDoItemRepository;
 
 import jakarta.validation.Valid;
@@ -26,12 +27,15 @@ public class ToDoItemController {
     @Autowired
     private ToDoItemRepository toDoItemRepository;
 
+    @Autowired
+    private CategoryRepository categoryRepository;
+
     @GetMapping("/")
-    public ModelAndView index() {
+    public String showCategories(Model model) {
         logger.info("GET home page");
-        ModelAndView modelAndView = new ModelAndView("index");
-        modelAndView.addObject("toDoItems", toDoItemRepository.findAll());
-        return modelAndView;
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("toDoItems", toDoItemRepository.findAll());
+        return "index";
     }
 
     @PostMapping("/add-todo")
