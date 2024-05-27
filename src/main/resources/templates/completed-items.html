@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css} " />
+    <script src="https://kit.fontawesome.com/8ffdf3c5cd.js" crossorigin="anonymous"></script>
+    <title>Home Page</title>
+</head>
+
+<body>
+    <div class="container py-5">
+        <h2>Completed Items</h2>
+        <div class="row">
+            <div class="col-sm-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Complete</th>
+                            <th>Created Date</th>
+                            <th>Modified Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>  
+                        <tr th:each="item : ${toDoItems}" th:class="${item.complete} ? table-success : table-warning">
+                            <td th:text="${item.id}">item_id</td>
+                            <td th:text="${item.category.title}">item_category</td>
+                            <td th:text="${item.description}">item_description</td>
+                            <td th:text="${item.complete}">item_complete</td>
+                            <td th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}">item_created_date</td>
+                            <td th:text="${#temporals.format(item.modifiedDate, 'dd-MM-yyyy HH:mm')}">item_modified_date</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="row mx-auto p-3" style="max-width: 150px;">
+                <a href="/" class="btn btn-success">Home Page</a>
+            </div>
+        </div>
+    </div>
+    
+   
+    
+
+</body>
