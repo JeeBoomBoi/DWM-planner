@@ -1,5 +1,7 @@
 # Daily-Weekly-Monthly Planner
 
+## Video Demo: https://youtu.be/ooLrZmWoiFQ
+
 ## A Todo application implemented using Spring Boot
 
 - Allows user to create todos on a daily/weekly/monthly basis
