@@ -1,4 +1,4 @@
-# Daily-Weekly-Monthly Planners
+# Daily-Weekly-Monthly Planner
 
 ## A Todo application implemented using Spring Boot
 
