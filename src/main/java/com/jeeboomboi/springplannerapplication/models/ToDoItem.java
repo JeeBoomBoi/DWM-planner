@@ -1,6 +1,9 @@
 package com.jeeboomboi.springplannerapplication.models;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -33,6 +36,16 @@ public class ToDoItem {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    public static final List<String> list = Collections.unmodifiableList(
+    new ArrayList<String>() {{
+        add("Daily");
+        add("Weekly");
+        add("Monthly");
+        // etc
+    }});
+
+    private String toDoType;
+
     public ToDoItem() {
 
     }
@@ -46,12 +59,13 @@ public class ToDoItem {
 
     @Override
     public String toString() {
-        return String.format("TodoItem{id=%d, description=%s, complete=%s, createdDate=%s, modifiedDate=%s, category=%s}", 
+        return String.format("TodoItem{id=%d, description=%s, complete=%s, createdDate=%s, modifiedDate=%s, category=%s, todotype=%s}", 
         id, 
         description,
         complete,
         createdDate,
         modifiedDate,
-        category);
+        category,
+        toDoType);
     }
 }

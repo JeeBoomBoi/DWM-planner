@@ -38,6 +38,14 @@ public class ToDoItemController {
         return "index";
     }
 
+    @GetMapping("/show-completed")
+    public String showCompleted(Model model) {
+        model.addAttribute("categories", categoryRepository.findAll());
+        model.addAttribute("toDoItems", toDoItemRepository.findAllByComplete(true));
+        return "completed-items";
+    }
+    
+
     @PostMapping("/add-todo")
     public String addToDoItem(@Valid ToDoItem toDoItem, BindingResult result, Model model) {
         if (result.hasErrors()) {
