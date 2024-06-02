@@ -6,34 +6,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css} " />
     <title>Update page</title>
+    <style>
+        .parent {
+            min-height: 50vh;
+        }
+
+        .f-label {
+            font-weight: 600;
+        }
+
+        .c-label {
+            font-weight: 700;
+        }
+
+        body {
+            min-height: 100vh;
+            background-color: #e699ff;
+            background-image:
+                radial-gradient(at 85% 14%, hsla(3, 71%, 77%, 1) 0px, transparent 50%),
+                radial-gradient(at 0% 80%, hsla(111, 91%, 72%, 1) 0px, transparent 50%),
+                radial-gradient(at 4% 79%, hsla(146, 85%, 68%, 1) 0px, transparent 50%),
+                radial-gradient(at 49% 63%, hsla(142, 70%, 66%, 1) 0px, transparent 50%),
+                radial-gradient(at 93% 0%, hsla(231, 74%, 74%, 1) 0px, transparent 50%),
+                radial-gradient(at 5% 90%, hsla(343, 83%, 79%, 1) 0px, transparent 50%),
+                radial-gradient(at 34% 58%, hsla(194, 62%, 61%, 1) 0px, transparent 50%);
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <div class="col-md-6">
+    <div class="parent container d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-4">
             <form action="#" th:object="${todo}" th:action="@{/todo/{id}(id=${todo.id})}" method="post">
                 <div class="form-group">
-                    <label for="description" class="mb-2">Description</label>
+                    <label for="description" class="mb-2 f-label">Description</label>
                     <!-- *{field} binds form field to model -->
                     <input type="text" class="form-control" th:field="*{description}" id="description" placeholder="Add a description">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" th:checked="${complete} == true" th:field="*{complete}" id="complete" />
-                            Complete
+                    <div class="form-check mt-2">
+                        <input class="form-check-input" type="checkbox" th:checked="${complete} == true" th:field="*{complete}" id="complete">
+                        <label class="form-check-label c-label" for="complete">
+                            Completed
                         </label>
-                    </div>
+                      </div>
                     <br>
-                    <label for="category_id" class="mb-2">Category</label>
+                    <label for="category_id" class="mb-2 f-label">Category</label>
                     <select class="form-control" id="category_id" th:field="*{category.id}">
                         <option th:each="category : ${categories}" th:value="${category.category_id}" th:utext="${category.title}"/>
                     </select>
                     <br>
-                    <label for="type" class="mb-2">Type of Todo</label>
+                    <label for="type" class="mb-2 f-label">Type of Todo</label>
                     <select class="form-control" id="type" th:field="*{toDoType}">
                         <option th:each="todoType : ${todo.list}" th:value="${todoType}" th:utext="${todoType}"/>
                     </select>
                     <br>
-                    <button class="btn btn-dark" type="submit">Update</button>
-    
+                    <!-- <div class="btn btn-group-sm" role="group">' -->
+                    <div style="display: flex; justify-content: space-around;">
+                        <button class="btn btn-dark" type="submit">Update</button>
+                        <button class="btn btn-danger"><a style="text-decoration: none; color:white" th:href="@{/delete/{id}(id=${todo.id})}">Delete</a></button>
+                    </div>
+                    <!-- </div> -->
                     <input type="hidden" th:field="*{createdDate}" />
                     <input type="hidden" th:field="*{modifiedDate}" />
                 </div>

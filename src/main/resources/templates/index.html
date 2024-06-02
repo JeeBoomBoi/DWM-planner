@@ -8,14 +8,29 @@
     <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.3/css/bootstrap.min.css} " />
     <script src="https://kit.fontawesome.com/8ffdf3c5cd.js" crossorigin="anonymous"></script>
     <title>Home Page</title>
+    <style>
+        body {
+            min-height: 100vh;
+            background-color: #e699ff;
+            background-image:
+                radial-gradient(at 85% 14%, hsla(3, 71%, 77%, 1) 0px, transparent 50%),
+                radial-gradient(at 0% 80%, hsla(111, 91%, 72%, 1) 0px, transparent 50%),
+                radial-gradient(at 4% 79%, hsla(146, 85%, 68%, 1) 0px, transparent 50%),
+                radial-gradient(at 49% 63%, hsla(142, 70%, 66%, 1) 0px, transparent 50%),
+                radial-gradient(at 93% 0%, hsla(231, 74%, 74%, 1) 0px, transparent 50%),
+                radial-gradient(at 5% 90%, hsla(343, 83%, 79%, 1) 0px, transparent 50%),
+                radial-gradient(at 34% 58%, hsla(194, 62%, 61%, 1) 0px, transparent 50%);
+        }
+    </style>
+
 </head>
 
 <body>
 
-    <div class="container">
+    <div class="container p-3">
         <div class="col-xl-12">
             <div class="row mx-auto p-3" style="max-width: 150px;">
-                <a href="/add-todo" class="btn btn-success">Add a todo</a>
+                <a href="/add-todo" class="btn btn-primary">Add a todo</a>
             </div>
         </div>
         <div class="row">
@@ -28,18 +43,19 @@
                         <div class="card-body">
                             <h5 class="card-title" th:text="${category.title}">card_title</h5>
                         </div>
-                        <div class="list-group list-group-flush d-flex justify-content-center" th:each="item : ${category.toDoList}" th:switch="${item.toDoType}">
+                        <div class="list-group list-group-flush d-flex justify-content-center"
+                            th:each="item : ${category.toDoList}" th:switch="${item.toDoType}"
+                            th:if="${item.complete} != true">
                             <div class="list-group-item" th:case="Daily">
-                                <div class="d-flex flex-row justify-content-between" >
+                                <div class="d-flex flex-row justify-content-between">
                                     <div>
                                         <div th:text="${item.description}"></div>
-                                        <small th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}"></small>
+                                        <small
+                                            th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}"></small>
                                     </div>
                                     <div class="btn btn-group-sm" role="group">
                                         <a th:href="@{/edit/{id}(id=${item.id})}"><i
                                                 class="fa-solid fa-pen-to-square fa-lg fa-fw"></i></a>
-                                        <a th:href="@{/delete/{id}(id=${item.id})}"><i
-                                                class="fa-solid fa-trash fa-lg fa-fw"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -56,18 +72,19 @@
                         <div class="card-body">
                             <h5 class="card-title" th:text="${category.title}">card_title</h5>
                         </div>
-                        <div class="list-group list-group-flush d-flex justify-content-center" th:each="item : ${category.toDoList}" th:switch="${item.toDoType}">
+                        <div class="list-group list-group-flush d-flex justify-content-center"
+                            th:each="item : ${category.toDoList}" th:switch="${item.toDoType}"
+                            th:if="${item.complete} != true">
                             <div class="list-group-item" th:case="Weekly">
-                                <div class="d-flex flex-row justify-content-between" >
+                                <div class="d-flex flex-row justify-content-between">
                                     <div>
                                         <div th:text="${item.description}"></div>
-                                        <small th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}"></small>
+                                        <small
+                                            th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}"></small>
                                     </div>
                                     <div class="btn btn-group-sm" role="group">
                                         <a th:href="@{/edit/{id}(id=${item.id})}"><i
                                                 class="fa-solid fa-pen-to-square fa-lg fa-fw"></i></a>
-                                        <a th:href="@{/delete/{id}(id=${item.id})}"><i
-                                                class="fa-solid fa-trash fa-lg fa-fw"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -84,18 +101,19 @@
                         <div class="card-body">
                             <h5 class="card-title" th:text="${category.title}">card_title</h5>
                         </div>
-                        <div class="list-group list-group-flush d-flex justify-content-center" th:each="item : ${category.toDoList}" th:switch="${item.toDoType}">
+                        <div class="list-group list-group-flush d-flex justify-content-center"
+                            th:each="item : ${category.toDoList}" th:switch="${item.toDoType}"
+                            th:if="${item.complete} != true">
                             <div class="list-group-item" th:case="Monthly">
-                                <div class="d-flex flex-row justify-content-between" >
+                                <div class="d-flex flex-row justify-content-between">
                                     <div>
                                         <div th:text="${item.description}"></div>
-                                        <small th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}"></small>
+                                        <small
+                                            th:text="${#temporals.format(item.createdDate, 'dd-MM-yyyy HH:mm')}"></small>
                                     </div>
                                     <div class="btn btn-group-sm" role="group">
                                         <a th:href="@{/edit/{id}(id=${item.id})}"><i
                                                 class="fa-solid fa-pen-to-square fa-lg fa-fw"></i></a>
-                                        <a th:href="@{/delete/{id}(id=${item.id})}"><i
-                                                class="fa-solid fa-trash fa-lg fa-fw"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -105,8 +123,8 @@
             </div>
         </div>
         <div class="col-xl-12">
-            <div class="row mx-auto p-3" style="max-width: 250px;">
-                <a href="/show-completed" class="btn btn-success">Show Completed Items</a>
+            <div class="row mx-auto p-3" style="max-width: 230px;">
+                <a href="/show-completed" class="btn btn-secondary">Show Completed Tasks</a>
             </div>
         </div>
     </div>

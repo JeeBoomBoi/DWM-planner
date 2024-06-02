@@ -42,7 +42,6 @@ public class ToDoItemController {
     public String showCompleted(Model model) {
         model.addAttribute("categories", categoryRepository.findAll());
         model.addAttribute("toDoItems", toDoItemRepository.findAllByComplete(true));
-        System.out.println(toDoItemRepository.findAllByComplete(true));
         return "completed-items";
     }
     
